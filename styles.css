@@ -36,7 +36,7 @@
     margin: auto;
 }
 
-.question-text {
+.question-text-wrapper {
     display: flex;
     justify-content: center;
     margin-bottom: 2rem;
