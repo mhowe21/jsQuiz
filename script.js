@@ -1,22 +1,56 @@
-var questions = [{
+const questions = [{
         Type: "True/False",
         Question: "Javascript and Java are the same language",
-        Correct: "False",
-        Incorrect: "True"
+        anwsers: [{
+                text: "False",
+                correct: true
+            },
+            {
+                text: "True",
+                correct: false
+            }
+        ]
+
     },
     {
         Type: "MultipleChoice",
         Question: "How would one declare a function in Javascript",
         Correct: "function name(){code}",
-        Incorrect: "function.name.{code}",
-        Incorrect: "function:name{code}"
+        anwsers: [{
+                text: "function name(){code}",
+                correct: true
+            },
+            {
+                text: "function.name.{code}",
+                correct: false
+            },
+            {
+                text: "function:name{code}",
+                correct: false
+
+            }
+        ]
     },
     {
-        Type: "MultipleSelect",
-        Question: "Selct all the primitive data types",
-        Correct: "String",
-        Correct: "Number",
-        Correct: "boolean",
+        Type: "MultipleChoice",
+        Question: "Which of the following is NOT a primitive data type",
+        anwsers: [{
+                text: "String",
+                correct: false
+            },
+            {
+                text: "Number",
+                correct: false
+            },
+            {
+                text: "Hash",
+                correct: true
+            },
+            {
+                text: "Boolean",
+                correct: false
+            }
+        ]
 
     }
 
@@ -72,86 +106,32 @@ function timer() {
 
 }
 
+
+
+
+
 function displayQuestion(index) {
 
     // add question test
-    let question = document.getElementById("question-text").innerText = questions[index]["Question"]
-    document.getElementById("question-text-wrapper").classList.remove("hide")
+    let textContainer = document.getElementById("question-text")
+    textContainer.innerText = questions[index].Question
+
     //console.log(question)
 
     // add question items
-    questionType = questions[index]["Type"]
-    console.log(questionType)
+    let anwsersButtons = document.getElementById("anwsers")
 
-    if (questionType == "True/False") {
-        trueFalse(questions[index])
-    } else if (questionType == "MultipleChoice") {
-        multipleChoice(question[index])
-    } else if (questionType == "MultipleSelect") {
-        MultiplesSelect(question[index])
-    }
-
-
-
-}
-
-function trueFalse(question) {
-    console.log("true false function")
-    let questionWrapper = document.getElementById("quiz-content-questions-wrapper")
-    // add question holder that we can remove from the parent during the next question
-    let questionHolder = document.createElement("div")
-    questionWrapper.appendChild(questionHolder)
-
-    // add true false question
-    // add true   
-    let questionTrue = document.createElement("input")
-    questionTrue.setAttribute("type", "radio")
-    questionTrue.setAttribute("name", "TF")
-    questionTrue.setAttribute("id", "True")
-    questionTrue.setAttribute("value", "true")
-    questionHolder.appendChild(questionTrue)
-    trueLabel = document.createElement("label")
-    trueLabel.setAttribute("for", "True")
-    questionHolder.append(trueLabel)
-    trueLabel.innerText = "True"
-
-    //add false
-    let questionFalse = document.createElement("input")
-    questionFalse.setAttribute("type", "radio")
-    questionFalse.setAttribute("name", "TF")
-    questionFalse.setAttribute("id", "False")
-    questionFalse.setAttribute("value", "false")
-    questionHolder.appendChild(questionFalse)
-    trueLabel = document.createElement("label")
-    trueLabel.setAttribute("for", "False")
-    questionHolder.append(trueLabel)
-    trueLabel.innerText = "False"
-
-    // get status on change. 
-    var radios = document.querySelectorAll('[name="TF"]');
-
-    function changeHandler(event) {
-        if (this.value === 'true') {
-            console.log('value', 'true');
-        } else if (this.value === 'false') {
-            console.log('value', 'false');
+    questions[index].anwsers.forEach(anwser => {
+        const button = document.createElement("button")
+        button.innerText = anwser.text
+        if (anwser.correct) {
+            button.dataset.correct = anwser.correct
         }
-    }
-
-    Array.prototype.forEach.call(radios, function (radio) {
-        radio.addEventListener('change', changeHandler);
+        button.addEventListener("click", choseAnwser)
+        anwsersButtons.append(button)
     });
-
-
-
-
 }
 
-function multipleChoice(question) {
-    console.log("multiple Choice Function")
+function choseAnwser(e) {
 
-}
-
-function MultiplesSelect(question) {
-    console.log("multiple select function")
 }
