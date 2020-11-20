@@ -7,11 +7,10 @@
         <link rel="stylesheet" href="styles.css">
         <script src="script.js" defer></script>
         <!-- import jQuery to make going over the dom easier   -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <title>Quiz</title>
 </head>
 
-<body>
+<body id="body">
     <div class="timer">
         <span>Score: </span>
         <span id="timer-number"></span>
@@ -19,14 +18,14 @@
    
     <div id="quiz-container" class="quiz-container">
         <div id="question-text-container" class=question-text-container>
-            <p id="question-text"></p>
+            <p id="question-text" class="question-text"></p>
         </div>
         <div id="question-container" class="question-container">
             <div id="anwsers" class="anwser-grid anwsers">
                 
             </div>
         </div>
-        <div class="control-buttons">   
+        <div class="control-buttons" id="control-buttons">   
             <button id="start-btn" class="start-btn">Start</button>
             <button id="next-btn" class="next-btn hide">Next</button>
         </div>
