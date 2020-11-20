@@ -6,23 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="styles.css">
         <script src="script.js" defer></script>
+        <script src="high-scores.js" defer></script>
+        <!-- import jQuery to make going over the dom easier   -->
         <title>Quiz</title>
 </head>
 
-<body>
+<body id="body">
     <div class="timer">
+        <span>Score: </span>
         <span id="timer-number"></span>
     </div>
-    <section class="quiz-content-wrapper">
-        <div id="question-text-wrapper" class="question-text-wrapper hide">
-            <p id="question-text"></p>
+    <div id="high-scores">
+        <a href="high-scores.html">High Scores</a>
+    </div>
+   
+    <div id="quiz-container" class="quiz-container">
+        <div class="correct-incorrect-container" id="correct-incorrect-container">
+            <span id="correct-incorrect-text"></span>
         </div>
-        
-        <div class="quiz-content-buttons">
-            <button id="start-btn" class="start-btn btn">Start</button>
-            <button id="next-btn" class="next-btn btn hide">Next</button>
+        <div id="question-text-container" class=question-text-container>
+            <p id="question-text" class="question-text"></p>
         </div>
-    </section>
+        <div id="question-container" class="question-container">
+            <div id="anwsers" class="anwser-grid anwsers">
+                
+            </div>
+        </div>
+        <div class="control-buttons" id="control-buttons">   
+            <button id="start-btn" class="start-btn">Start</button>
+            <button id="next-btn" class="next-btn hide">Next</button>
+        </div>
+    </div>
 
 </body>
 
