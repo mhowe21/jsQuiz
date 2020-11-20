@@ -82,8 +82,12 @@ body{
 }
 
 .correct-indicator{
-    color: var(--green);
-    background-color: white;
+    color: darkgreen;
+    
+}
+
+.incorrect-indicator {
+    color: var(--red)
 }
 
 /* .btn {

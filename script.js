@@ -100,13 +100,19 @@ function choseAnwser(event) {
     if (correctAnwser == undefined) {
         time = time - 250
         anwserIndicatorText.innerText = "Incorrect"
+        anwserIndicatorText.classList.add("incorrect-indicator")
+        anwserIndicatorText.classList.remove("correct-indicator")
+        anwserIndicatorText.classList.remove("hide")
         
         console.log("anwser was incorrect")
         
     }else {
         console.log("anwser was correct")
         anwserIndicatorText.innerText = "Correct"
+        anwserIndicatorText.classList.remove("incorrect-indicator")
         anwserIndicatorText.classList.add("correct-indicator")
+        anwserIndicatorText.classList.remove("hide")
+        
     }
 
     //unhide next button
@@ -118,6 +124,7 @@ function reset() {
         anwsersButtons.removeChild(anwsersButtons.firstChild)
 
     } while (anwsersButtons.firstChild != null)
+    document.getElementById("correct-incorrect-text").classList.add("hide")
 }
 
 function gameOver() {
@@ -127,6 +134,7 @@ function gameOver() {
     document.getElementById("question-container").classList.add("hide")
     document.getElementById("control-buttons").classList.add("hide")
     document.getElementById("question-text").innerText = ("Score: " + score) 
+    document.getElementById("timer-number").classList.add("hide")
     //time = 0
     
 
