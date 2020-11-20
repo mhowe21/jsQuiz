@@ -1,66 +1,8 @@
-const questions = [{
-        Type: "True/False",
-        Question: "Javascript and Java are the same language",
-        anwsers: [{
-                text: "False",
-                correct: true
-            },
-            {
-                text: "True",
-                correct: false
-            }
-        ]
-
-    },
-    {
-        Type: "MultipleChoice",
-        Question: "How would one declare a function in Javascript",
-        Correct: "function name(){code}",
-        anwsers: [{
-                text: "function name(){code}",
-                correct: true
-            },
-            {
-                text: "function.name.{code}",
-                correct: false
-            },
-            {
-                text: "function:name{code}",
-                correct: false
-
-            }
-        ]
-    },
-    {
-        Type: "MultipleChoice",
-        Question: "Which of the following is NOT a primitive data type",
-        anwsers: [{
-                text: "String",
-                correct: false
-            },
-            {
-                text: "Number",
-                correct: false
-            },
-            {
-                text: "Hash",
-                correct: true
-            },
-            {
-                text: "Boolean",
-                correct: false
-            }
-        ]
-
-    }
-
-
-]
-
-var time = 2000
+let time = 2000
 let questionIndex = 0
-body = document.body
-
+let body = document.body
+let anwsersButtons = document.getElementById("anwsers")
+let correctAnwser = false
 
 document.getElementById("start-btn").addEventListener("click", function () {
     //start the timer after clicking start. 
@@ -76,6 +18,10 @@ document.getElementById("next-btn").addEventListener("click", function () {
     console.log(questionIndex)
     displayQuestion(questionIndex)
     questionIndex = questionIndex + 1
+    if(questions.length > questionIndex + 1){
+        gameOver()
+    }
+    
 })
 
 
@@ -116,22 +62,114 @@ function displayQuestion(index) {
     let textContainer = document.getElementById("question-text")
     textContainer.innerText = questions[index].Question
 
-    //console.log(question)
+    //reset question on next question
+    reset()
 
     // add question items
-    let anwsersButtons = document.getElementById("anwsers")
+    
 
     questions[index].anwsers.forEach(anwser => {
-        const button = document.createElement("button")
-        button.innerText = anwser.text
+        const anwserButton = document.createElement("button")
+        anwserButton.innerText = anwser.text
         if (anwser.correct) {
-            button.dataset.correct = anwser.correct
+            // slightly probomatic as if you are inspecting ellement it will tag the correct anwser
+            anwserButton.dataset.correct = anwser.correct
         }
-        button.addEventListener("click", choseAnwser)
-        anwsersButtons.append(button)
+        anwserButton.addEventListener("click", choseAnwser)
+        anwsersButtons.append(anwserButton)
     });
 }
 
-function choseAnwser(e) {
+function choseAnwser(event) {
+    // get what you clicked on    
+    const chosenAnwserButton = event.target
+    
+    // https://developer.mozilla.org/en-US/docs/Web/API/HTMLOrForeignElement/dataset
+    const correctAnwser = chosenAnwserButton.dataset.correct  
+    
+    console.log(correctAnwser)
+    // subtract time if the wrong anwser is given. 
+    if(correctAnwser == true){
+
+    }
+    else if(correctAnwser == undefined) {
+        time = time - 100
+    }
+    else if(correctAnwser == undefined && document.getElementById("next-btn").addEventListener("click")){
+        console.log("skipped quesiton")
+        time = time - 1000
+    }
 
 }
+
+function reset(){
+    do{
+        anwsersButtons.removeChild(anwsersButtons.firstChild)
+        
+    }while(anwsersButtons.firstChild != null)
+}
+
+function gameOver() {
+    console.log("game over")
+
+}
+
+// question data
+const questions = [{
+    Type: "True/False",
+    Question: "Javascript and Java are the same language",
+    anwsers: [{
+            text: "False",
+            correct: true
+        },
+        {
+            text: "True",
+            correct: false
+        }
+    ]
+
+},
+{
+    Type: "MultipleChoice",
+    Question: "How would one declare a function in Javascript",
+    Correct: "function name(){code}",
+    anwsers: [{
+            text: "function name(){code}",
+            correct: true
+        },
+        {
+            text: "function.name.{code}",
+            correct: false
+        },
+        {
+            text: "function:name{code}",
+            correct: false
+
+        }
+    ]
+},
+{
+    Type: "MultipleChoice",
+    Question: "Which of the following is NOT a primitive data type",
+    anwsers: [{
+            text: "String",
+            correct: false
+        },
+        {
+            text: "Number",
+            correct: false
+        },
+        {
+            text: "Hash",
+            correct: true
+        },
+        {
+            text: "Boolean",
+            correct: false
+        }
+    ]
+
+}
+
+
+]
