@@ -90,6 +90,26 @@ body{
     color: var(--red)
 }
 
+.high-score-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 5%;
+
+
+
+    
+}
+
+.high-score-container span {
+    font-size: x-large;
+    justify-content: space-between;
+
+
+
+}
+
 /* .btn {
     
     margin: 5px;

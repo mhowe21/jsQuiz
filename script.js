@@ -1,4 +1,4 @@
-let time = 100
+let time = 200
 let questionIndex = 0
 let body = document.body
 let anwsersButtons = document.getElementById("anwsers")
@@ -49,7 +49,8 @@ function timer() {
         if (time < 0 || gameOverBool == true) {
             clearTimer()
         }
-        function clearTimer(){
+
+        function clearTimer() {
             clearInterval(runTimer)
             timerNumber.innerText = "Game - over"
             gameOver()
@@ -66,7 +67,7 @@ function timer() {
 function displayQuestion(index) {
 
     // add question test
-    
+
     console.log(index)
     let textContainer = document.getElementById("question-text")
     textContainer.innerText = questions[index].Question
@@ -100,23 +101,23 @@ function choseAnwser(event) {
     console.log(correctAnwser)
     // subtract time if the wrong anwser is given. 
     anwserIndicatorText = document.getElementById("correct-incorrect-text")
-    
+
     if (correctAnwser == undefined) {
-        time = time - 250
+        time = time - 20
         anwserIndicatorText.innerText = "Incorrect"
         anwserIndicatorText.classList.add("incorrect-indicator")
         anwserIndicatorText.classList.remove("correct-indicator")
         anwserIndicatorText.classList.remove("hide")
-        
+
         console.log("anwser was incorrect")
-        
-    }else {
+
+    } else {
         console.log("anwser was correct")
         anwserIndicatorText.innerText = "Correct"
         anwserIndicatorText.classList.remove("incorrect-indicator")
         anwserIndicatorText.classList.add("correct-indicator")
         anwserIndicatorText.classList.remove("hide")
-        
+
     }
 
     //unhide next button
@@ -133,23 +134,23 @@ function reset() {
 
 function gameOver() {
     const score = time
-    
-    
 
-    
+
+
+
     //console.log(score)
-    
+
     document.getElementById("question-container").classList.add("hide")
     document.getElementById("control-buttons").classList.add("hide")
-    document.getElementById("question-text").innerText = ("Score: " + score) 
+    document.getElementById("question-text").innerText = ("Score: " + score)
     document.getElementById("timer-number").classList.add("hide")
     //time = 0
 
     // prompt
     let promptMessage = ("You scored " + String(score) + " " + "\r\n" + "enter your name here")
-    let name = prompt(promptMessage,"your name here")
-    localStorage.setItem(name,score)
-    
+    let name = prompt(promptMessage, "your name here")
+    localStorage.setItem(name, score)
+
 
 }
 
@@ -208,7 +209,60 @@ const questions = [{
             }
         ]
 
-    }
-
-
-]
+    },
+    {
+        Type: "TrueFalse",
+        Question: "Null and Zero are the same value",
+        anwsers: [{
+                text: "True",
+                correct: false
+            },
+            {
+                text: "False",
+                correct: true
+            }
+        ]
+    },
+    {
+        Type: "MultipleChoice",
+        Question: "The forEach() method does what?",
+        anwsers: [{
+                text: "Get data for each declared variable in the document",
+                correct: false
+            },
+            {
+                text: "for each class on an HTML page get all user anwsers",
+                correct: false
+            },
+            {
+                text: "for each element in an array execute a function once",
+                correct: true
+            },
+            {
+                text: "for each user on a page log their ip address",
+                correct: false
+            }
+        ]},
+            {
+                Type: "MultipleChoice",
+                Question: "The following line of code would do what \nlet a = []",
+                anwsers: [{
+                        text: "declare an empty object and assign it to the variable let",
+                        correct: false
+                    },
+                    {
+                        text: "declare an empty array and assign it to variable let",
+                        correct: false
+                    },
+                    {
+                        text: "declare an empty object and assign it to the variable a",
+                        correct: false,
+                    },
+                    {
+                        text: "declare an empty array and assign it to the variable a",
+                        correct: true
+                    }
+                ]
+            }
+        ]
+    
