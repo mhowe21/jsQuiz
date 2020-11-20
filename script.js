@@ -2,7 +2,8 @@ let time = 2000
 let questionIndex = 0
 let body = document.body
 let anwsersButtons = document.getElementById("anwsers")
-let correctAnwser = false
+
+
 
 document.getElementById("start-btn").addEventListener("click", function () {
     //start the timer after clicking start. 
@@ -10,17 +11,26 @@ document.getElementById("start-btn").addEventListener("click", function () {
     document.getElementById("start-btn").classList.add("hide")
     document.getElementById("next-btn").classList.remove("hide")
     displayQuestion(questionIndex)
-    questionIndex = questionIndex + 1
+    console.log(questionIndex)
+    //questionIndex = questionIndex + 1
 
 })
 
 document.getElementById("next-btn").addEventListener("click", function () {
-    console.log(questionIndex)
-    displayQuestion(questionIndex)
     questionIndex = questionIndex + 1
-    if(questions.length > questionIndex + 1){
+    //console.log(questionIndex)
+    if(questionIndex + 1 > questions.length){
         gameOver()
+    }else{
+        displayQuestion(questionIndex)
     }
+    
+    
+
+    
+
+    
+    
     
 })
 
@@ -59,6 +69,10 @@ function timer() {
 function displayQuestion(index) {
 
     // add question test
+    if(index > questions.length){
+        gameOver()
+    }
+    console.log(index)
     let textContainer = document.getElementById("question-text")
     textContainer.innerText = questions[index].Question
 
@@ -94,10 +108,6 @@ function choseAnwser(event) {
     }
     else if(correctAnwser == undefined) {
         time = time - 100
-    }
-    else if(correctAnwser == undefined && document.getElementById("next-btn").addEventListener("click")){
-        console.log("skipped quesiton")
-        time = time - 1000
     }
 
 }
