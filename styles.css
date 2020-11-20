@@ -71,6 +71,21 @@ body{
     font-size: 24px;
 }
 
+.correct-incorrect-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.correct-incorrect-container span {
+    font-size: x-large;
+}
+
+.correct-indicator{
+    color: var(--green);
+    background-color: white;
+}
+
 /* .btn {
     
     margin: 5px;

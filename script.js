@@ -95,10 +95,18 @@ function choseAnwser(event) {
 
     console.log(correctAnwser)
     // subtract time if the wrong anwser is given. 
-    if (correctAnwser == true) {
-
-    } else if (correctAnwser == undefined) {
+    anwserIndicatorText = document.getElementById("correct-incorrect-text")
+    
+    if (correctAnwser == undefined) {
         time = time - 250
+        anwserIndicatorText.innerText = "Incorrect"
+        
+        console.log("anwser was incorrect")
+        
+    }else {
+        console.log("anwser was correct")
+        anwserIndicatorText.innerText = "Correct"
+        anwserIndicatorText.classList.add("correct-indicator")
     }
 
     //unhide next button
