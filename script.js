@@ -1,7 +1,8 @@
-let time = 1000
+let time = 100
 let questionIndex = 0
 let body = document.body
 let anwsersButtons = document.getElementById("anwsers")
+let gameOverBool = false
 
 
 
@@ -20,7 +21,7 @@ document.getElementById("next-btn").addEventListener("click", function () {
     questionIndex = questionIndex + 1
     //console.log(questionIndex)
     if (questionIndex + 1 > questions.length) {
-        gameOver()
+        gameOverBool = true
     } else {
         displayQuestion(questionIndex)
     }
@@ -45,9 +46,12 @@ function timer() {
 
 
 
-        if (time < 0) {
+        if (time < 0 || gameOverBool == true) {
+            clearTimer()
+        }
+        function clearTimer(){
             clearInterval(runTimer)
-            timerNumber.innerText = "Times-Up!"
+            timerNumber.innerText = "Game - over"
             gameOver()
         }
 
@@ -129,13 +133,22 @@ function reset() {
 
 function gameOver() {
     const score = time
-    console.log(score)
-    console.log("game over")
+    
+    
+
+    
+    //console.log(score)
+    
     document.getElementById("question-container").classList.add("hide")
     document.getElementById("control-buttons").classList.add("hide")
     document.getElementById("question-text").innerText = ("Score: " + score) 
     document.getElementById("timer-number").classList.add("hide")
     //time = 0
+
+    // prompt
+    let promptMessage = ("You scored " + String(score) + " " + "\r\n" + "enter your name here")
+    let name = prompt(promptMessage,"your name here")
+    localStorage.setItem(name,score)
     
 
 }
